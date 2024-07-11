@@ -24,6 +24,9 @@ x-shared: &shared
     - redis
   volumes:
     - n8n_storage:/home/node/.n8n
+    - type: bind
+      source: ./init-data.sh
+      target: /docker-entrypoint-initdb.d/init-data.sh
   depends_on:
     redis:
       condition: service_healthy
